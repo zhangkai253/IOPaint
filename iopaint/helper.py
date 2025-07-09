@@ -32,6 +32,8 @@ def switch_mps_device(model_name, device):
 
 
 def get_cache_path_by_url(url):
+    if url.contains("lama"):
+        return "/root/models/big-lama.pt"
     parts = urlparse(url)
     hub_dir = get_dir()
     model_dir = os.path.join(hub_dir, "checkpoints")
