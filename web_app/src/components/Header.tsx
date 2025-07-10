@@ -1,19 +1,21 @@
 import { PlayIcon } from "@radix-ui/react-icons"
 import { useState } from "react"
 import { IconButton, ImageUploadButton } from "@/components/ui/button"
-import Shortcuts from "@/components/Shortcuts"
+// import Shortcuts from "@/components/Shortcuts"
 import { useImage } from "@/hooks/useImage"
 
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import PromptInput from "./PromptInput"
-import { RotateCw, Image, Upload } from "lucide-react"
+import {RotateCw, Image, Upload, Info} from "lucide-react"
 import FileManager, { MASK_TAB } from "./FileManager"
 import { getMediaBlob, getMediaFile } from "@/lib/api"
 import { useStore } from "@/lib/states"
-import SettingsDialog from "./Settings"
+// import SettingsDialog from "./Settings"
 import { cn, fileToImage } from "@/lib/utils"
-import Coffee from "./Coffee"
+// import Coffee from "./Coffee"
 import { useToast } from "./ui/use-toast"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+
 
 const Header = () => {
   const [
@@ -92,6 +94,20 @@ const Header = () => {
         ) : (
           <></>
         )}
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-bold text-primary">智能图片处理器</h1>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Info className="w-4 h-4 text-gray-400 hover:text-primary cursor-pointer" />
+            </TooltipTrigger>
+            <TooltipContent side="bottom" className="max-w-[200px]">
+              <p className="text-sm">
+                支持图片修复、去水印、背景替换等AI功能
+              </p>
+            </TooltipContent>
+            </Tooltip>
+        </div>
+
 
         <ImageUploadButton
           disabled={isInpainting}
@@ -192,11 +208,11 @@ const Header = () => {
 
       {model.need_prompt ? <PromptInput /> : <></>}
 
-      <div className="flex gap-1">
-        <Coffee />
-        <Shortcuts />
-        {serverConfig.disableModelSwitch ? <></> : <SettingsDialog />}
-      </div>
+      {/*<div className="flex gap-1">*/}
+      {/*  /!*<Coffee />*!/*/}
+      {/*  /!*<Shortcuts />*!/*/}
+      {/*  /!*{serverConfig.disableModelSwitch ? <></> : <SettingsDialog />}*!/*/}
+      {/*</div>*/}
     </header>
   )
 }
